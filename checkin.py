@@ -4,7 +4,7 @@ import os
 import logging
 import datetime
 from typing import Dict, List, Optional, Tuple
-from pypushdeer import PushDeer
+
 
 def beijing_time_converter(timestamp):
     utc_dt = datetime.datetime.fromtimestamp(timestamp, tz=datetime.timezone.utc)
@@ -23,7 +23,10 @@ logger = logging.getLogger(__name__)
 
 
 # ENVIRONMENT
-ENV_PUSH_KEY = "PUSHDEER_SENDKEY"
+ENV_PUSH_KEY = "PUSHPLUS_TOKEN"
+
+# PushPlus API
+PUSHPLUS_URL = "http://www.pushplus.plus/send"
 ENV_COOKIES = "GLADOS_COOKIES"
 ENV_EXCHANGE_PLAN = "GLADOS_EXCHANGE_PLAN"
 
@@ -261,11 +264,20 @@ def main():
         logger.info(f"未设置 '{ENV_PUSH_KEY}'，跳过推送通知。")
     else:
         try:
-            pushdeer = PushDeer(pushkey=push_key)
-            pushdeer.send_text(title, desp=content)
-            logger.info("推送通知发送成功。")
+            push_data = {
+                "token": push_key,
+                "title": title,
+                "content": content.replace("\n", "<br>"),
+                "template": "html"
+            }
+            push_response = requests.post(PUSHPLUS_URL, json=push_data)
+            push_result = push_response.json()
+            if push_result.get("code") == 200:
+                logger.info(f"PushPlus 推送成功，流水号: {push_result.get('data')}")
+            else:
+                logger.warning(f"PushPlus 推送返回异常: code={push_result.get('code')}, msg={push_result.get('msg')}")
         except Exception as e:
-            logger.error(f"发送推送通知失败: {e}")
+            logger.error(f"发送 PushPlus 推送通知失败: {e}")
 
 
 if __name__ == '__main__':
