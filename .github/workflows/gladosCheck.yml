@@ -49,7 +49,7 @@ jobs:
         GLADOS_EXCHANGE_PLAN: ${{ secrets.GLADOS_EXCHANGE_PLAN }}
 
     - name: keep alive
-      uses: liskin/gh-workflow-keepalive@v2
+      uses: liskin/gh-workflow-keepalive@v1
       
     - name: delete workflow runs
       uses: Mattraks/delete-workflow-runs@v2
