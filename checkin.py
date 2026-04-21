@@ -233,6 +233,8 @@ def format_push_content(results: List[Dict[str, str]]) -> Tuple[str, str]:
 
 
 def main():
+    push_key = ''
+    title, content = "# 脚本执行出错", ""
     try:
         push_key, cookies_list, exchange_plan = load_config()
 
