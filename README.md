@@ -2,9 +2,7 @@
 
 ## 食用方式：
 
-### 注册一个GLaDOS的账号([注册地址](https://glados.space/landing/0A58E-NV28S-6U3QV-33VMG))
-
-#### 我的邀请码：([0A58E-NV28S-6U3QV-33VMG](https://0a58e-nv28s-6u3qv-33vmg.glados.space)) 
+### 注册一个GLaDOS的账号([注册地址](https://glados.one/))
 
 ### **Fork**本仓库
 
@@ -44,7 +42,7 @@
 
 4. 手机推送（非必须）
 
-- 添加1个`repository secret`，命名为`PUSHDEER_SENDKEY`，其值对应 PushDeer key: ([获取地址](https://www.pushdeer.com/product.html))。
+- 添加1个`repository secret`，命名为`PUSHPLUS_TOKEN`，其值对应 PUSHPLUS TOKEN: ([获取地址](https://www.pushplus.plus/))。
 
 ### **star**自己的仓库
 
@@ -62,6 +60,7 @@
 
 ## 更新日志
 
+- **2026-04**: 替换推送服务商为PushPlus。
 - **2026-01**: 重构代码，添加log输出方便定位，支持新版网址，支持配置积分兑换策略。
 
 
